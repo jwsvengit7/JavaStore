@@ -15,11 +15,10 @@ public class Main {
 
         Manager manager = new Manager("joy","samuel","joy@gmail.com",12);
 
-
         Filreader filreader = new Filreader();
         String file ="src/main/resources/execel.xlsx";
         filreader.setFilreader(file);
-        filreader.fileReader(file);
+        System.out.println(filreader.fileReader(file));
 
         List<Staff> listOfStaff = new ArrayList<>();
         List<Cashier> listOfcasjiers = new ArrayList<>();
