@@ -54,7 +54,7 @@ public class Manager extends Staff implements MangerInterface {
             int confirm = scanner.nextInt();
 
             if (confirm == 1) {
-                System.out.println(checkIf(listOfcasjiers));
+              checkIf(listOfcasjiers);
 
             } else {
                 System.out.println("Continue");
@@ -69,7 +69,7 @@ public class Manager extends Staff implements MangerInterface {
 
 
     }
-    List<Cashier> checkIf(List<Cashier> listOfcasjiers) {
+    void checkIf(List<Cashier> listOfcasjiers) {
         boolean status = true;
         int check = 0;
         Scanner scanner = new Scanner(System.in);
@@ -85,9 +85,10 @@ public class Manager extends Staff implements MangerInterface {
             }
             if (status == true && check > -1) {
                 listOfcasjiers.remove(check);
+
+                System.out.println(listOfcasjiers);
             }
         }
-        return listOfcasjiers;
     }
 
 }
