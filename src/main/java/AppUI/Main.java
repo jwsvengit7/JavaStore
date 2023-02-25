@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         Manager manager = new Manager("joy","samuel","joy@gmail.com",12);
+        List<Product> products = new ArrayList<>();
 
         Filreader filreader = new Filreader();
         String file ="src/main/resources/execel.xlsx";
@@ -31,7 +32,7 @@ public class Main {
         System.out.println(manager.managerHire(listOfcasjiers));
         System.out.println(manager.managerFire(listOfcasjiers));
         System.out.println(cashier.cashierSale(listOfcasjiers,manager));
-        System.out.println(cashier.printReciept(listOfcasjiers));
+
 
     }
 }

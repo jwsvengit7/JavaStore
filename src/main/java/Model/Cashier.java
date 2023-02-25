@@ -12,10 +12,7 @@ public class Cashier extends Staff implements CashierInterface {
     public Cashier(String firstName, String lastName, String email, int StaffID) {
         super(firstName, lastName, email, StaffID);
     }
-
-    public Cashier() {
-    }
-
+    public Cashier() {}
     @Override
     public String cashierSale(List<Cashier> cashiers,Manager manager) throws IOException {
         manager.managerHire(cashiers);
@@ -23,9 +20,10 @@ public class Cashier extends Staff implements CashierInterface {
         String file ="src/main/resources/execel.xlsx";
         filreader.setFilreader(file);
         List<Product> checks =  filreader.fileReader(filreader.getFilreader());
+        String showUp ="";
         System.out.println("List of Product ");
         for (int i =0;i<checks.size();i++){
-            System.out.println(i+1+" "+ checks.get(i).getName());
+            System.out.println(i+1+" "+ checks.get(i).getName()+" Price: $"+checks.get(i).getPrice()+" Quantity: "+checks.get(i).getQuantity());
         }
 
         Scanner scanner = new Scanner(System.in);
@@ -37,31 +35,37 @@ public class Cashier extends Staff implements CashierInterface {
             String name = checks.get(toComfirmIndex).getName();
             int price = checks.get(toComfirmIndex).getPrice();
             int qty = checks.get(toComfirmIndex).getQuantity();
-            System.out.println("ENTER QUANTITY");
-            int qtyOf = scanner.nextInt();
+                System.out.println("ENTER QUANTITY");
+                int qtyOf = scanner.nextInt();
+
             if(qtyOf>qty){
-                System.out.println("We don't have more than that");
-            }else{
+                showUp="We don't have more than that";
+            }else {
                 System.out.println("ENTER PRICE");
                 int priceof = scanner.nextInt();
-                if(priceof<=price){
-                    System.out.println("Congratilations you have successfully bought the product");
-
-                }else{
-                    System.out.println("Insufficient funds");
+                if (priceof <= price) {
+                    showUp="Congratilations you have successfully bought the product";
+                    System.out.println(printReciept(checks ,toComfirmIndex));
+                } else {
+                    showUp ="Insufficient funds";
                 }
-
             }
+
         }
-        return "";
-
-
-
-
+        return showUp;
     }
 
-    @Override
-    public List<Cashier>  printReciept(List<Cashier> cashiers) {
-    return cashiers;
+    public String  printReciept(List<Product> products,int index) {
+        String found="";
+      found ="PRODUCT RECEIPT \n" +
+              "*****************\n" +
+            "Name: "+products.get(index).getName()+"\n" +
+              "*******************\n"+
+              "Price: $"+products.get(index).getPrice()+"\n" +
+              "*******************\n"+
+              "Quantity: $"+products.get(index).getQuantity()+"\n" +
+              "*******************\n"+
+            "Checkout Reciept";;
+            return found;
     }
 }
