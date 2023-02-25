@@ -22,31 +22,42 @@ public class Cashier extends Staff implements CashierInterface {
         Filreader filreader = new Filreader();
         String file ="src/main/resources/execel.xlsx";
         filreader.setFilreader(file);
+        List<Product> checks =  filreader.fileReader(filreader.getFilreader());
+        System.out.println("List of Product ");
+        for (int i =0;i<checks.size();i++){
+            System.out.println(i+1+" "+ checks.get(i).getName());
+        }
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("ENTER A PRODUCT TO BUY");
+        System.out.println("CHOOSE A PRODUCT TO SELL");
 
-        String name=scanner.nextLine();
-        System.out.println("ENTER A PRODUCT PRICE");
+        int count=scanner.nextInt();
+        if(count<checks.size()) {
+            int toComfirmIndex = count-1;
+            String name = checks.get(toComfirmIndex).getName();
+            int price = checks.get(toComfirmIndex).getPrice();
+            int qty = checks.get(toComfirmIndex).getQuantity();
+            System.out.println("ENTER QUANTITY");
+            int qtyOf = scanner.nextInt();
+            if(qtyOf>qty){
+                System.out.println("We don't have more than that");
+            }else{
+                System.out.println("ENTER PRICE");
+                int priceof = scanner.nextInt();
+                if(priceof<=price){
+                    System.out.println("Congratilations you have successfully bought the product");
 
-        int price= Integer.parseInt(scanner.next());
-        System.out.println("ENTER A PRODUCT QTY");
+                }else{
+                    System.out.println("Insufficient funds");
+                }
 
-        int qty = Integer.parseInt(scanner.next());
-        String confirm ="";
-        int length = filreader.fileReader(filreader.getFilreader()).size();
-        List<Product> check =  filreader.fileReader(filreader.getFilreader());
-        for(int i = 0;i<length;i++){
-           if (price!=check.get(i).getPrice()) {
-                confirm ="Price too low to buy that product";
-            }
-            else if (qty > check.get(i).getQuantity()) {
-                confirm ="We don't have more of that product";
-            } else{
-                confirm="Successful Purchase a product";
             }
         }
-       return confirm;
+        return "";
+
+
+
+
     }
 
     @Override

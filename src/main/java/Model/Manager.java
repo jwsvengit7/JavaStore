@@ -60,6 +60,7 @@ public class Manager extends Staff implements MangerInterface {
                 System.out.println("Continue");
             }
             for (int c = 0; c < listOfcasjiers.size(); c++) {
+
                 System.out.println("Cashiers Firstname " + listOfcasjiers.get(c).getFirstName() + " Lastname: " + listOfcasjiers.get(c).getFirstName());
             }
         }catch (Exception e){
