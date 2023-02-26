@@ -14,9 +14,11 @@ public class Main {
 
         /******* LIST AND QUEUE *******/
         List<Product> products = new ArrayList<>();
+
         PriorityQueue<String> CustomerList = new PriorityQueue<>();
         List<Staff> StaffList = new ArrayList<>();
         List<Cashier> CashierList = new ArrayList<>();
+
 
 
         /******** MANAGER OBJECT *******/
@@ -53,6 +55,7 @@ public class Main {
         System.out.println(manager.managerFire(CashierList));
         System.out.println(cashier.cashierSale(CashierList,manager));
         System.out.println(customer.BuyProductFromStore(CustomerList));
+
 
 
     }

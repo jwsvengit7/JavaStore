@@ -4,6 +4,7 @@ import Abstraction.CustomerInteface;
 import DataAccess.Filreader;
 
 import java.io.IOException;
+
 import java.util.*;
 
 public class Customer implements CustomerInteface {
@@ -36,7 +37,7 @@ public class Customer implements CustomerInteface {
         public void setEmail(String email) {
             this.email = email;
         }
-
+        @Override
         public String BuyProductFromStore(PriorityQueue<String> CustomerList) throws IOException {
             String namefirst = CustomerList.peek();
             System.out.println(namefirst);
@@ -96,4 +97,5 @@ public class Customer implements CustomerInteface {
                 ", id=" + id +
                 '}';
     }
+
 }
