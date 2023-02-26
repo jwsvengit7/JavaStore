@@ -64,7 +64,7 @@ public class Customer implements CustomerInteface {
                 System.out.println("CHOOSE A PRODUCT TO BUY");
 
                 int count = scanner.nextInt();
-                if (count < checks.size()) {
+                if (count <= checks.size()) {
                     int toComfirmIndex = count - 1;
                     String name = checks.get(toComfirmIndex).getName();
                     int price = checks.get(toComfirmIndex).getPrice();
