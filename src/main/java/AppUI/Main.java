@@ -1,10 +1,7 @@
 package AppUI;
 
 import DataAccess.Filreader;
-import Model.Cashier;
-import Model.Manager;
-import Model.Product;
-import Model.Staff;
+import Model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +12,8 @@ public class Main {
 
         Manager manager = new Manager("joy","samuel","joy@gmail.com",12);
         List<Product> products = new ArrayList<>();
+        Product product = new Product("Rice",32,2);
+        Customer customer = new Customer();
 
         Filreader filreader = new Filreader();
         String file ="src/main/resources/execel.xlsx";
@@ -23,15 +22,14 @@ public class Main {
 
         List<Staff> listOfStaff = new ArrayList<>();
         List<Cashier> listOfcasjiers = new ArrayList<>();
-        System.out.println(listOfcasjiers);
         Cashier cashier = new Cashier();
-
         listOfStaff.add(manager);
 
-        System.out.println("manager: "+listOfStaff);
+//        System.out.println("manager: "+listOfStaff);
         System.out.println(manager.managerHire(listOfcasjiers));
         System.out.println(manager.managerFire(listOfcasjiers));
         System.out.println(cashier.cashierSale(listOfcasjiers,manager));
+        System.out.println(customer.BuyProductFromStore(product));
 
 
     }
