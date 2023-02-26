@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -15,10 +14,9 @@ public class Main {
         /******* LIST AND QUEUE *******/
         List<Product> products = new ArrayList<>();
 
-        PriorityQueue<String> CustomerList = new PriorityQueue<>();
         List<Staff> StaffList = new ArrayList<>();
         List<Cashier> CashierList = new ArrayList<>();
-
+        PriorityQueue<String> CustomerList = new PriorityQueue<>();
 
 
         /******** MANAGER OBJECT *******/
