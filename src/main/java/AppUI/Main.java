@@ -52,7 +52,7 @@ public class Main {
         System.out.println(manager.managerHire(CashierList));
         System.out.println(manager.managerFire(CashierList));
         System.out.println(cashier.cashierSale(CashierList,manager));
-        System.out.println(customer.BuyProductFromStore(CustomerList));
+        customer.BuyProductFromStore(CustomerList);
 
 
 
