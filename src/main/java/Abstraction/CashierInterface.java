@@ -8,6 +8,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface CashierInterface {
-    public String  cashierSale(List<Cashier> cashiers, Manager manager) throws IOException;
+    public String  cashierSale(List<Cashier> CashierList, Manager manager) throws IOException;
 
 }

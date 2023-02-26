@@ -14,14 +14,14 @@ public class Cashier extends Staff implements CashierInterface {
     }
     public Cashier() {}
     @Override
-    public String cashierSale(List<Cashier> cashiers,Manager manager) throws IOException {
-        manager.managerHire(cashiers);
-        Filreader filreader = new Filreader();
-        String file ="src/main/resources/execel.xlsx";
+    public String cashierSale(List<Cashier> CashierList,Manager manager) throws IOException {
+        manager.managerHire(CashierList);
+        Filreader filreader = new Filreader("src/main/resources/execel.xlsx");
+        String file = filreader.getFilreader();
         filreader.setFilreader(file);
         List<Product> checks =  filreader.fileReader(filreader.getFilreader());
         String showUp ="";
-        System.out.println("List of Product ");
+        System.out.println("List of Product To sale ");
         for (int i =0;i<checks.size();i++){
             System.out.println(i+1+" "+ checks.get(i).getName()+" Price: $"+checks.get(i).getPrice()+" Quantity: "+checks.get(i).getQuantity());
         }
@@ -44,7 +44,7 @@ public class Cashier extends Staff implements CashierInterface {
                 System.out.println("ENTER PRICE");
                 int priceof = scanner.nextInt();
                 if (priceof <= price) {
-                    showUp="Congratilations you have successfully bought the product";
+                    showUp="Congratulations you have successfully bought the product";
                     System.out.println(printReciept(checks ,toComfirmIndex));
                 } else {
                     showUp ="Insufficient funds";
@@ -52,6 +52,7 @@ public class Cashier extends Staff implements CashierInterface {
             }
 
         }
+    
         return showUp;
     }
 

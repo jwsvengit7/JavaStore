@@ -11,12 +11,13 @@ public class Manager extends Staff implements MangerInterface {
     }
     public Manager() {}
     @Override
-    public List<Cashier> managerHire(List<Cashier> listOfcasjiers) {
+    public List<Cashier> managerHire(List<Cashier> CashierList) {
         String name = "";
         String lastname = "";
         String email = "";
         int id=0;
-        if (listOfcasjiers.size()<1) {
+        /******** VALIDATE RESULT *******/
+        if (CashierList.size()<1) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter a name");
             name = scanner.nextLine();
@@ -32,18 +33,18 @@ public class Manager extends Staff implements MangerInterface {
                 System.out.println("email cannot be empty");
             }
             else{
-
+                /******** OBJECT OF CASHIER *******/
 
                 Cashier cashier1 = new Cashier(name,lastname,email,id);
-                listOfcasjiers.add(cashier1);
+                CashierList.add(cashier1);
             }
         }
-        return listOfcasjiers;
+        return CashierList;
     }
-    public List<Cashier> managerFire(List<Cashier> listOfcasjiers) {
+    public List<Cashier> managerFire(List<Cashier> CashierList) {
 
-        for (int c=0;c<listOfcasjiers.size();c++){
-            System.out.println("Cashiers Firstname "+listOfcasjiers.get(c).getFirstName()+" Lastname: "+listOfcasjiers.get(c).getFirstName());
+        for (int c=0;c<CashierList.size();c++){
+            System.out.println("Cashiers Firstname "+CashierList.get(c).getFirstName()+" Lastname: "+CashierList.get(c).getFirstName());
 
         }
         try {
@@ -54,30 +55,30 @@ public class Manager extends Staff implements MangerInterface {
             int confirm = scanner.nextInt();
 
             if (confirm == 1) {
-              checkIf(listOfcasjiers);
+              checkIf(CashierList);
 
             } else {
                 System.out.println("Continue");
             }
-            for (int c = 0; c < listOfcasjiers.size(); c++) {
+            for (int c = 0; c < CashierList.size(); c++) {
 
-                System.out.println("Cashiers Firstname " + listOfcasjiers.get(c).getFirstName() + " Lastname: " + listOfcasjiers.get(c).getFirstName());
+                System.out.println("Cashiers Firstname " + CashierList.get(c).getFirstName() + " Lastname: " + CashierList.get(c).getFirstName());
             }
         }catch (Exception e){
             System.out.println(e);
         }
-        return listOfcasjiers;
+        return CashierList;
 
 
     }
-    void checkIf(List<Cashier> listOfcasjiers) {
+    void checkIf(List<Cashier> CashierList) {
         boolean status = true;
         int check = 0;
         Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < listOfcasjiers.size(); i++) {
+        for (int i = 0; i < CashierList.size(); i++) {
 
             String press = scanner.nextLine();
-            if (press.equals(listOfcasjiers.get(i).getFirstName())) {
+            if (press.equals(CashierList.get(i).getFirstName())) {
                 status = true;
                 check = i;
             } else {
@@ -85,9 +86,10 @@ public class Manager extends Staff implements MangerInterface {
                 check = -1;
             }
             if (status == true && check > -1) {
-                listOfcasjiers.remove(check);
+                CashierList.remove(check);
 
-                System.out.println(listOfcasjiers);
+                System.out.println(CashierList);
+                return;
             }
         }
     }

@@ -14,7 +14,6 @@ public class Staff {
     }
 
     public Staff() {
-
     }
 
     public String getFirstName() {

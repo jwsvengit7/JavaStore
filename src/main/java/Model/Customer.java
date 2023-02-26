@@ -4,81 +4,96 @@ import Abstraction.CustomerInteface;
 import DataAccess.Filreader;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Customer implements CustomerInteface {
         private String name;
-        private int qty;
-        private int price;
+        private String email;
+        private int id;
+    public Customer(String name,String email,int id){
+        this.name=name;
+        this.email=email;
+        this.id=id;
 
-        public Customer(){}
+    }
+
+    public Customer(){}
         public String getName() {
             return name;
         }
-
         public void setName(String name) {
             this.name = name;
         }
-
-        public int getQty() {
-            return qty;
+        public String getEmail() {
+            return email;
+        }
+        public void setId(int id) {
+            this.id = id;
+        }
+        public int getId() {
+            return id;
+        }
+        public void setEmail(String email) {
+            this.email = email;
         }
 
-        public void setQty(int qty) {
-            this.qty = qty;
-        }
+        public String BuyProductFromStore(PriorityQueue<String> CustomerList) throws IOException {
+            String namefirst = CustomerList.peek();
+            System.out.println(namefirst);
 
-        public int getPrice() {
-            return price;
-        }
+            /******** EXCEL OBJECT *******/
 
-        public void setPrice(int price) {
-            this.price = price;
-        }
-
-        @Override
-        public String toString() {
-            return "Customer{" +
-                    "name='" + name + '\'' +
-                    ", qty=" + qty +
-                    ", price=" + price +
-                    '}';
-        }
-
-        @Override
-        public String BuyProductFromStore(Product item) {
-            String name = item.getName();
             Filreader filreader = new Filreader();
-            String file ="src/main/resources/execel.xlsx";
+            String file = "src/main/resources/execel.xlsx";
             filreader.setFilreader(file);
-            List<String> buyIfExist = new ArrayList<>();
-            String found = "Product out of stock";
-            int count = 0;
-            try {
-                List<Product> checks =  filreader.fileReader(filreader.getFilreader());
-                for (int i = 0; i < checks.size(); i++) {
-                    String productOnStore = checks.get(i).getName();
-                    buyIfExist.add(productOnStore);
-                }
-                for (int i = 0; i < buyIfExist.size(); i++) {
-                    int price = checks.get(i).getPrice();
-                    int qty = checks.get(i).getQuantity();
-                    int total = price * qty;
-                    String priceProduct = "" + price + "";
+            String showUp = "";
 
-                    if (buyIfExist.get(i).equals(name)) {
-                        count++;
-                        found = "You have Bought\n" +
-                                "Name: " + buyIfExist.get(i) + "\n" +
-                                "Price: $" + priceProduct + "\n" +
-                                "Total Price: $" + total;
+            List<Product> checks = filreader.fileReader(filreader.getFilreader());
+            System.out.println("List of Product ");
+
+            /******** LOOP THROUGH PRODUCT ON EXCEL *******/
+
+            for (int i = 0; i < checks.size(); i++) {
+                System.out.println(i + 1 + " " + checks.get(i).getName() + " Price: $" + checks.get(i).getPrice() + " Quantity: " + checks.get(i).getQuantity());
+            }
+            /******** VALIDATE RESULT *******/
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("CHOOSE A PRODUCT TO BUY");
+
+            int count = scanner.nextInt();
+            if (count < checks.size()) {
+                int toComfirmIndex = count - 1;
+                String name = checks.get(toComfirmIndex).getName();
+                int price = checks.get(toComfirmIndex).getPrice();
+                int qty = checks.get(toComfirmIndex).getQuantity();
+                System.out.println("ENTER QUANTITY");
+                int qtyOf = scanner.nextInt();
+
+                if (qtyOf > qty) {
+                    showUp = "We don't have more than that";
+                } else {
+                    System.out.println("ENTER PRICE");
+                    int priceof = scanner.nextInt();
+                    if (priceof <= price) {
+                        showUp = "Congratulations you have successfully bought the product";
+
+                    } else {
+                        showUp = "Insufficient funds";
                     }
                 }
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+
             }
-            return found;
+            return showUp;
         }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", id=" + id +
+                '}';
+    }
 }
