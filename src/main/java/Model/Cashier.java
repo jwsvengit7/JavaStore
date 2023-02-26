@@ -46,13 +46,11 @@ public class Cashier extends Staff implements CashierInterface {
                 if (priceof <= price) {
                     showUp="Congratulations you have successfully bought the product";
                     System.out.println(printReciept(checks ,toComfirmIndex));
-                } else {
-                    showUp ="Insufficient funds";
                 }
             }
 
         }
-    
+
         return showUp;
     }
 

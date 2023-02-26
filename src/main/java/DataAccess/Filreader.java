@@ -23,8 +23,23 @@ public class Filreader {
     public void setFilreader(String filreader) {
         this.filreader = filreader;
     }
-    public  List<Product> fileReader(String filreader) throws IOException {
-        List<Product> listOfItems = new ArrayList<>();
+    public void showProduct() throws IOException {
+        String show="";
+        Filreader filreader = new Filreader("src/main/resources/execel.xlsx");
+        String file = filreader.getFilreader();
+        filreader.setFilreader(file);
+        List<Product> ProductList =  filreader.fileReader(filreader.getFilreader());
+        for(int i =0;i<ProductList.size();i++){
+            String name = ProductList.get(i).getName();
+            int price = ProductList.get(i).getPrice();
+            int qty = ProductList.get(i).getQuantity();
+            show+="**** "+name+" **** Price: $"+price+" **** Quantity: "+qty+"\n";
+        }
+        System.out.println(show);
+    }
+    public List<Product> fileReader(String filreader) throws IOException {
+        List<Product> ProductList = new ArrayList<>();
+        String show="";
 
             FileInputStream stream = new FileInputStream(filreader);
             XSSFWorkbook workbook = new XSSFWorkbook(stream);
@@ -35,11 +50,9 @@ public class Filreader {
                 int price = (int)sheet.getRow(i).getCell(2).getNumericCellValue();
                 int quantity = (int)sheet.getRow(i).getCell(3).getNumericCellValue();
                 Product product=new Product(name,price,quantity);
-                listOfItems.add(product);
+                ProductList.add(product);
             }
-
-        return listOfItems;
-
+        return ProductList;
     }
 
     @Override

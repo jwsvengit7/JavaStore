@@ -48,7 +48,8 @@ public class Main {
         Filreader filreader = new Filreader("src/main/resources/execel.xlsx");
         String file = filreader.getFilreader();
         filreader.setFilreader(file);
-        System.out.println(filreader.fileReader(file));
+        filreader.fileReader(file);
+        filreader.showProduct();
         System.out.println(manager.managerHire(CashierList));
         System.out.println(manager.managerFire(CashierList));
         System.out.println(cashier.cashierSale(CashierList,manager));
