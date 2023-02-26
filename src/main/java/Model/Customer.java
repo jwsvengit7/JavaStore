@@ -38,9 +38,7 @@ public class Customer implements CustomerInteface {
             this.email = email;
         }
         @Override
-        public String BuyProductFromStore(PriorityQueue<String> CustomerList) throws IOException {
-            String namefirst = CustomerList.peek();
-            System.out.println(namefirst);
+        public void BuyProductFromStore(PriorityQueue<String> CustomerList) throws IOException {
 
             /******** EXCEL OBJECT *******/
 
@@ -58,35 +56,40 @@ public class Customer implements CustomerInteface {
                 System.out.println(i + 1 + " " + checks.get(i).getName() + " Price: $" + checks.get(i).getPrice() + " Quantity: " + checks.get(i).getQuantity());
             }
             /******** VALIDATE RESULT *******/
+            while(CustomerList.size()!=0) {
+                String namefirst = CustomerList.poll();
+                System.out.println(namefirst+" is the Next customer");
 
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("CHOOSE A PRODUCT TO BUY");
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("CHOOSE A PRODUCT TO BUY");
 
-            int count = scanner.nextInt();
-            if (count < checks.size()) {
-                int toComfirmIndex = count - 1;
-                String name = checks.get(toComfirmIndex).getName();
-                int price = checks.get(toComfirmIndex).getPrice();
-                int qty = checks.get(toComfirmIndex).getQuantity();
-                System.out.println("ENTER QUANTITY");
-                int qtyOf = scanner.nextInt();
+                int count = scanner.nextInt();
+                if (count < checks.size()) {
+                    int toComfirmIndex = count - 1;
+                    String name = checks.get(toComfirmIndex).getName();
+                    int price = checks.get(toComfirmIndex).getPrice();
+                    int qty = checks.get(toComfirmIndex).getQuantity();
+                    System.out.println("ENTER QUANTITY");
+                    int qtyOf = scanner.nextInt();
 
-                if (qtyOf > qty) {
-                    showUp = "We don't have more than that";
-                } else {
-                    System.out.println("ENTER PRICE");
-                    int priceof = scanner.nextInt();
-                    if (priceof <= price) {
-                        showUp = "Congratulations you have successfully bought the product";
-
+                    if (qtyOf > qty) {
+                        showUp = "We don't have more than that";
                     } else {
-                        showUp = "Insufficient funds";
+                        System.out.println("ENTER PRICE");
+                        int priceof = scanner.nextInt();
+                        if (priceof <= price) {
+                            showUp = "Congratulations you have successfully bought the product";
+
+                        } else {
+                            showUp = "Insufficient funds";
+                        }
                     }
+
+
                 }
-
-
+                System.out.println("The Remaining Customer are :" + CustomerList);
+                System.out.println(showUp);
             }
-            return showUp;
         }
 
     @Override
