@@ -45,15 +45,12 @@ public class Manager extends Staff implements MangerInterface {
 
         for (int c=0;c<CashierList.size();c++){
             System.out.println("Cashiers Firstname "+CashierList.get(c).getFirstName()+" Lastname: "+CashierList.get(c).getFirstName());
-
         }
         try {
-
             System.out.println("Do you want to fire a cashier");
             System.out.println("Press 1 to Fire Press 2 to continue");
             Scanner scanner = new Scanner(System.in);
             int confirm = scanner.nextInt();
-
             if (confirm == 1) {
               checkIf(CashierList);
 

@@ -17,7 +17,6 @@ public class Customer implements CustomerInteface {
         this.id=id;
 
     }
-
     public Customer(){}
         public String getName() {
             return name;
@@ -57,8 +56,8 @@ public class Customer implements CustomerInteface {
             }
             /******** VALIDATE RESULT *******/
             while(CustomerList.size()!=0) {
-                String namefirst = CustomerList.poll();
-                System.out.println(namefirst+" is the Next customer");
+                String nameFirst = CustomerList.poll();
+                System.out.println(nameFirst+" is the Next customer");
 
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("CHOOSE A PRODUCT TO BUY");
