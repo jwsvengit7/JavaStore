@@ -9,7 +9,6 @@ public class Manager extends Staff implements MangerInterface {
     public Manager(String firstName, String lastName, String email, int StaffID) {
         super(firstName, lastName, email, StaffID);
     }
-    public Manager() {}
     @Override
     public List<Cashier> managerHire(List<Cashier> CashierList) {
         String name = "";
@@ -18,6 +17,7 @@ public class Manager extends Staff implements MangerInterface {
         int id=0;
         /******** VALIDATE RESULT *******/
         if (CashierList.size()<1) {
+
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter a name");
             name = scanner.nextLine();
@@ -72,7 +72,6 @@ public class Manager extends Staff implements MangerInterface {
         int check = 0;
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < CashierList.size(); i++) {
-
             String press = scanner.nextLine();
             if (press.equals(CashierList.get(i).getFirstName())) {
                 status = true;
@@ -81,9 +80,8 @@ public class Manager extends Staff implements MangerInterface {
                 status = false;
                 check = -1;
             }
-            if (status == true && check > -1) {
+            if (status && check > -1) {
                 CashierList.remove(check);
-
                 System.out.println(CashierList);
                 return;
             }

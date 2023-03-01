@@ -12,12 +12,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         /******* LIST AND QUEUE *******/
-        List<Product> products = new ArrayList<>();
-
         List<Staff> StaffList = new ArrayList<>();
         List<Cashier> CashierList = new ArrayList<>();
         PriorityQueue<String> CustomerList = new PriorityQueue<>();
-
 
         /******** MANAGER OBJECT *******/
         Manager manager = new Manager("joy","samuel","joy@gmail.com",12);
@@ -40,6 +37,7 @@ public class Main {
         CustomerList.add(two.getName());
         CustomerList.add(three.getName());
         CustomerList.add(four.getName());
+
 
         /******* READING YOUR PRODUCT FROM EXCEL *******/
         StaffList.add(manager);

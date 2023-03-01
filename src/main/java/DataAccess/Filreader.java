@@ -13,6 +13,7 @@ import java.util.List;
 
 public class Filreader {
     private String filreader;
+    private List<Product> ProductList;
     public Filreader(String filreader) {
         this.filreader = filreader;
     }
@@ -23,22 +24,9 @@ public class Filreader {
     public void setFilreader(String filreader) {
         this.filreader = filreader;
     }
-    public void showProduct() throws IOException {
-        String show="";
-        Filreader filreader = new Filreader("src/main/resources/execel.xlsx");
-        String file = filreader.getFilreader();
-        filreader.setFilreader(file);
-        List<Product> ProductList =  filreader.fileReader(filreader.getFilreader());
-        for(int i =0;i<ProductList.size();i++){
-            String name = ProductList.get(i).getName();
-            int price = ProductList.get(i).getPrice();
-            int qty = ProductList.get(i).getQuantity();
-            show+="**** "+name+" **** Price: $"+price+" **** Quantity: "+qty+"\n";
-        }
-        System.out.println(show);
-    }
+
     public List<Product> fileReader(String filreader) throws IOException {
-        List<Product> ProductList = new ArrayList<>();
+        ProductList = new ArrayList<>();
         String show="";
 
             FileInputStream stream = new FileInputStream(filreader);
@@ -53,6 +41,21 @@ public class Filreader {
                 ProductList.add(product);
             }
         return ProductList;
+    }
+
+    public void showProduct() throws IOException {
+        String show="";
+        Filreader filreader = new Filreader("src/main/resources/execel.xlsx");
+        String file = filreader.getFilreader();
+        filreader.setFilreader(file);
+        List<Product> ProductList =  filreader.fileReader(filreader.getFilreader());
+        for(int i =0;i<ProductList.size();i++){
+            String name = ProductList.get(i).getName();
+            int price = ProductList.get(i).getPrice();
+            int qty = ProductList.get(i).getQuantity();
+            show+="**** "+name+" **** Price: $"+price+" **** Quantity: "+qty+"\n";
+        }
+        System.out.println(show);
     }
 
     @Override
