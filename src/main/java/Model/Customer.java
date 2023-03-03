@@ -7,37 +7,15 @@ import java.io.IOException;
 
 import java.util.*;
 
-public class Customer implements CustomerInteface {
-        private String name;
-        private String email;
-        private int id;
-    public Customer(String name,String email,int id){
-        this.name=name;
-        this.email=email;
-        this.id=id;
+public class Customer extends CustomerBody implements CustomerInteface {
 
+    public Customer(String name, String email, int id, Product productLists) {
+        super(name, email, id, productLists);
     }
-    public Customer(){}
-        public String getName() {
-            return name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
-        public String getEmail() {
-            return email;
-        }
-        public void setId(int id) {
-            this.id = id;
-        }
-        public int getId() {
-            return id;
-        }
-        public void setEmail(String email) {
-            this.email = email;
-        }
-        @Override
-        public void BuyProductFromStore(PriorityQueue<String> CustomerList) throws IOException {
+    public Customer() {}
+
+    @Override
+        public void BuyProductFromStore(PriorityQueue<Customer> CustomerList) throws IOException {
 
             /******** EXCEL OBJECT *******/
 
@@ -56,8 +34,9 @@ public class Customer implements CustomerInteface {
             }
             /******** VALIDATE RESULT *******/
             while(CustomerList.size()!=0) {
-                String nameFirst = CustomerList.poll();
-                System.out.println(nameFirst+" is the Next customer");
+              String nameFirst = CustomerList.peek().getName();
+                        CustomerList.poll();
+               System.out.println(nameFirst+" is the Next customer");
 
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("CHOOSE A PRODUCT TO BUY");
@@ -86,18 +65,11 @@ public class Customer implements CustomerInteface {
 
 
                 }
-                System.out.println("The Remaining Customer are :" + CustomerList);
+                System.out.println("The Remaining Customers are :" + CustomerList);
                 System.out.println(showUp);
             }
         }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", id=" + id +
-                '}';
-    }
+
 
 }

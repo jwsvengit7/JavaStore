@@ -44,7 +44,7 @@ public class Cashier extends Staff implements CashierInterface {
                 System.out.println("ENTER PRICE");
                 int priceof = scanner.nextInt();
                 if (priceof <= price) {
-                    showUp="Congratulations you have successfully bought the product";
+                    showUp="Congratulations you have successfully sell a product";
                     System.out.println(printReciept(checks ,toComfirmIndex));
                 }
             }

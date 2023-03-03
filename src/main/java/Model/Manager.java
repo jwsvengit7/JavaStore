@@ -66,6 +66,7 @@ public class Manager extends Staff implements MangerInterface {
         }
         return CashierList;
 
+
     }
     void checkIf(List<Cashier> CashierList) {
         boolean status = true;
