@@ -77,10 +77,10 @@ public class Main {
 
 
 
-//        System.out.println(manager.managerHire(CashierList));
-//        System.out.println(manager.managerFire(CashierList));
-//        System.out.println(cashier.cashierSale(CashierList,manager));
-//        customer.BuyProductFromStore(CustomerList);
+        System.out.println(manager.managerHire(CashierList));
+        System.out.println(manager.managerFire(CashierList));
+        System.out.println(cashier.cashierSale(CashierList,manager));
+        customer.BuyProductFromStore(CustomerList);
 
 
 
