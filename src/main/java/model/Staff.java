@@ -1,5 +1,10 @@
-package Model;
+package model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Staff {
     private String firstName;
     private String lastName;
@@ -16,35 +21,6 @@ public class Staff {
     public Staff() {
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String newFirstName) {
-        this.firstName = newFirstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String newLastName) {
-        this.lastName = newLastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String newEmail) {
-        this.email = newEmail;
-    }
-    public int getStaffID() {
-        return StaffID;
-    }
-    public void setStaffID(int staffID) {
-        this.StaffID = staffID;
-    }
 
     @Override
     public String toString() {

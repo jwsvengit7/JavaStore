@@ -1,7 +1,7 @@
 package Abstraction;
 
-import Implement.ManagerImplement;
-import Model.Cashier;
+import implement.ManagerImplement;
+import model.Cashier;
 
 import java.io.IOException;
 import java.util.List;

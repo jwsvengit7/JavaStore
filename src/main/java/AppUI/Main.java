@@ -1,86 +1,80 @@
 package AppUI;
 
-import DataAccess.Filreader;
-import Implement.CashierImplement;
-import Implement.CustomerImplementation;
-import Implement.ManagerImplement;
-import Model.*;
+import dataAccess.Filreader;
+import implement.CashierImplement;
+import implement.CustomerImplementation;
+import implement.ManagerImplement;
+import model.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
+import static java.lang.System.out;
+import static model.Product.DataRecordStore;
 
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        /******* LIST AND QUEUE *******/
-        List<Staff> StaffList = new ArrayList<>();
-        List<Cashier> CashierList = new ArrayList<>();
-        PriorityQueue<Customer> CustomerList=new PriorityQueue<>(new RequestComparator());
-        
+        /* ****** LIST AND QUEUE *******/
+        ArrayList<Staff> StaffList = new ArrayList<>();
+        ArrayList<Cashier> CashierList = new ArrayList<>();
 
-
-        /******** MANAGER OBJECT *******/
+        /* ******* MANAGER OBJECT *******/
         Manager manager = new Manager("joy","samuel","joy@gmail.com",12);
+        StaffList.add(manager);
         ManagerImplement managerImplement = new ManagerImplement();
         CustomerImplementation customerIn = new CustomerImplementation();
 
-        /******* PRODUCT OBJECT *******/
-        Product product = new Product("Meat",4000,10);
-        Product product2 = new Product("Rice",4000,15);
-        Product product3 = new Product("Meat",4000,1);
-        Product product4 = new Product("Meat",4000,11);
+        /* ***** READING YOUR PRODUCT FROM EXCEL *******/
 
-        /******* CASHIER OBJECT ********/
+        Filreader filreader = new Filreader();
+        filreader.fileReader(filreader.getFile());
+
+        /* ****** CASHIER OBJECT ********/
         CashierImplement cashier = new CashierImplement();
 
-        /******* CUSTOMER OBJECT ********/
-        Customer one = new Customer("Jack","chiorlujack@gmail.com",1,product);
-        Customer two = new Customer("William","williamj045@gmail.com",2,product2);
-        Customer three = new Customer("Samuel","samuelin@gmail.com",3,product3);
-        Customer four = new Customer("david","david@gmail.com",4,product4);
+        /* ****** ADDING CUSTOMER CART ********/
+        LinkedList<Product> productListFor1 = new LinkedList<>();
+
+        /* ******* CUSTOMER OBJECT ********/
+        Customer one = new Customer("Jack","chiorlujack@gmail.com",1,productListFor1);
+        Customer two = new Customer("William","williamj045@gmail.com",2,productListFor1);
+        Customer three = new Customer("Samuel","samuelin@gmail.com",3,productListFor1);
+        Customer four = new Customer("david","david@gmail.com",4,productListFor1);
 
 
-        /******* ADDING CUSTOMER TO THE QUEUE *******/
-    
+        four.addCart(new Product("RICE",12,2));
+        four.addCart(new Product("EGG",12,2));
+        four.addCart(new Product("PIZZA",12,2));
+        two.addCart(new Product("RICE",12,2));
+        three.addCart(new Product("TOMATO",2,2));
+        three.addCart(new Product("MEAT",2,2));
+        one.addCart(new Product("CHOCOLATE",12,2));
 
-        List<Customer> nami = new ArrayList<>();
-        nami.add(one);
-        nami.add(two);
-        nami.add(three);
-        nami.add(four);
-        int x = 23;
+        out.println(DataRecordStore);
 
-        for (Customer s : nami) {
 
-            if (s.getProductLists().getQuantity()<x){
-                CustomerList.add(s);
-            }
+        /* ****** ADDING CUSTOMER TO THE QUEUE *******/
 
+        Customer customers = new Customer();
+        Customer[] arr = {one,two,three,four};
+        for (Customer customer : arr) {
+            customers.addToFIFO(customer);
+        }
+        for (Customer customer : arr) {
+            customers.addToPrority(customer);
         }
 
+        out.println(customers.getPriority());
 
-        System.out.println(CustomerList);
-        StaffList.add(manager);
-
-        /****** READING YOUR PRODUCT FROM EXCEL *******/
-
-        /****************************/
-
-        Filreader filreader = new Filreader("src/main/resources/execel.xlsx");
-        String file = filreader.getFilreader();
-        filreader.setFilreader(file);
-        filreader.fileReader(file);
+//        CustomerThread thread = new CustomerThread(customers.getPriority(),Product,customerIn);
+//        Thread thread1 = new Thread(thread);
+//        thread1.start();
         filreader.showProduct();
+        customerIn.BuyProductFromStore(customers.getPriority());
 
-
-        System.out.println(managerImplement.managerHire(CashierList));
-        System.out.println(managerImplement.managerFire(CashierList));
-        System.out.println(cashier.cashierSale(CashierList,managerImplement));
-        customerIn.BuyProductFromStore(CustomerList);
-
-
+        out.println(managerImplement.managerHire(CashierList));
+        out.println(managerImplement.managerFire(CashierList));
+        out.println(cashier.cashierSale(CashierList,managerImplement));
 
 
     }

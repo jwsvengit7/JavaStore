@@ -1,7 +1,7 @@
-package Implement;
+package implement;
 
 import Abstraction.MangerInterface;
-import Model.Cashier;
+import model.Cashier;
 
 import java.util.List;
 import java.util.Scanner;

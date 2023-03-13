@@ -1,9 +1,9 @@
 package Abstraction;
-import Model.Customer;
+import model.Customer;
 
 import java.io.IOException;
-import java.util.PriorityQueue;
+import java.util.Queue;
 
 public interface CustomerInteface {
-    void BuyProductFromStore(PriorityQueue<Customer> CustomerList) throws IOException;
+    void BuyProductFromStore(Queue<Customer> CustomerList) throws IOException;
 }

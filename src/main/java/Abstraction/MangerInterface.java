@@ -1,6 +1,6 @@
 package Abstraction;
 
-import Model.Cashier;
+import model.Cashier;
 
 import java.util.List;
 

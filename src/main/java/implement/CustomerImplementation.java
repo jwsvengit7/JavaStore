@@ -1,35 +1,35 @@
-package Implement;
+package implement;
 
 import Abstraction.CustomerInteface;
-import DataAccess.Filreader;
-import Model.Customer;
-import Model.Product;
+import dataAccess.Filreader;
+import model.Customer;
+import model.Product;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Scanner;
+
+import static model.Product.DataRecordStore;
 
 public class CustomerImplementation extends Thread implements CustomerInteface {
 
     public void run(){
         try {
-
         }catch (Exception e){
             System.out.println(e+ " present error");
         }
     }
     @Override
-    public void BuyProductFromStore(PriorityQueue<Customer> CustomerList) throws IOException {
+    public void BuyProductFromStore(Queue<Customer> CustomerList) throws IOException {
 
         /******** EXCEL OBJECT *******/
 
-        Filreader filreader = new Filreader();
-        String file = "src/main/resources/execel.xlsx";
-        filreader.setFilreader(file);
+
         String showUp = "";
 
-        List<Product> checks = filreader.fileReader(filreader.getFilreader());
+        List<Product> checks = DataRecordStore;
         System.out.println("List of Product ");
 
         /******** LOOP THROUGH PRODUCT ON EXCEL *******/

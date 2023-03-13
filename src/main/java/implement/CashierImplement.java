@@ -1,23 +1,22 @@
-package Implement;
+package implement;
 
 import Abstraction.CashierInterface;
-import DataAccess.Filreader;
-import Model.Cashier;
-import Model.Product;
+import dataAccess.Filreader;
+import model.Cashier;
+import model.Product;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
+
+import static model.Product.DataRecordStore;
 
 public class CashierImplement implements CashierInterface {
 
     @Override
     public String cashierSale(List<Cashier> CashierList, ManagerImplement manager) throws IOException {
         manager.managerHire(CashierList);
-        Filreader filreader = new Filreader("src/main/java/org/example/resources/execel.xlsxfrdfb");
-        String file = filreader.getFilreader();
-        filreader.setFilreader(file);
-        List<Product> checks =  filreader.fileReader(filreader.getFilreader());
+        List<Product> checks = DataRecordStore;
         String showUp ="";
         System.out.println("List of Product To sale ");
         for (int i =0;i<checks.size();i++){
